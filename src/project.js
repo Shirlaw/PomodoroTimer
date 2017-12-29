@@ -1,0 +1,1 @@
+console.log('this is so you never have to build a webpack config again')
