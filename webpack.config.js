@@ -7,7 +7,6 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   entry: {
     index: "./src/index.js",
-    project: "./src/project.js",
     vendor: ["react"]
   },
   devtool: "inline-source-map",
@@ -36,7 +35,8 @@ module.exports = {
         use: {
           loader: "babel-loader",
           query: {
-            presets: ["react"]
+            presets: ["es2015", "react"],
+            plugins: ["transform-class-properties"]
           }
         }
       }
