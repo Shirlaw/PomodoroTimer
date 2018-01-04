@@ -1,3 +1,5 @@
-import react from "react"
+import React from "react";
+import ReactDOM from "react-dom";
+import PomodoroTimer from "./components/PomodoroTimer/PomodoroTimer";
 
-console.log('hello James Shirlaw')
+ReactDOM.render(<PomodoroTimer />, document.getElementById("app"));
