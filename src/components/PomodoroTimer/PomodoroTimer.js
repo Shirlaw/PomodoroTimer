@@ -2,37 +2,41 @@ import React from "react";
 import { Component } from "react";
 import Countdown from "../Countdown/Countdown";
 
-const secondsInTwentyFiveMinute = 1500;
+// const secondsInTwentyFiveMinute = 1500;
+const secondsInTwentyFiveMinute = 3;
 
 export default class PomodoroTimer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      time: undefined
+      pomodoros: 0,
+      started: false
     };
   }
   startTimer = () => {
     let currentSeconds = secondsInTwentyFiveMinute;
     if (this.timer) clearInterval(this.timer);
     this.timer = setInterval(() => {
-      if (currentSeconds > 0) {
+      if (currentSeconds >= 0) {
         let minutes = Math.floor(currentSeconds / 60);
         let seconds = currentSeconds - minutes * 60;
         if (`${seconds}`.length == 1) seconds = `0${seconds}`;
-
-        this.setState({ seconds, minutes });
-
+        this.setState({ seconds, minutes, started: true });
         currentSeconds = currentSeconds - 1;
       } else {
         clearInterval(this.timer);
+        this.setState({ started: false });
       }
     }, 1000);
   };
   render() {
+    let { minutes, seconds, started } = this.state;
     return (
       <div id="pomodoroTimer">
-        <Countdown minutes={this.state.minutes} seconds={this.state.seconds} />
-        <button onClick={this.startTimer}> Start </button>
+        <Countdown minutes={minutes} seconds={seconds} />
+        <button onClick={this.startTimer}>
+          {started ? "Restart" : "Start"}{" "}
+        </button>
       </div>
     );
   }
