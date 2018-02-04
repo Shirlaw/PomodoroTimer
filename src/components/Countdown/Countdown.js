@@ -3,12 +3,16 @@ import { Component } from "react";
 
 export default class PomodoroTimer extends Component {
   render() {
-    console.log(this.props);
-    return (
-      <div>
-        {this.props.minutes}:
-        {this.props.seconds}
-      </div>
-    );
+    const { seconds, minutes } = this.props;
+    if (minutes || seconds) {
+      return (
+        <div>
+          {minutes}:
+          {seconds}
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 }
