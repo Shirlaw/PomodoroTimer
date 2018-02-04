@@ -2,8 +2,8 @@ import React from "react";
 import { Component } from "react";
 import Countdown from "../Countdown/Countdown";
 
-// const secondsInTwentyFiveMinute = 1500;
-const secondsInTwentyFiveMinute = 3;
+// const secondsInTwentyFiveMinutes = 1500;
+const secondsInTwentyFiveMinutes = 3;
 
 export default class PomodoroTimer extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ export default class PomodoroTimer extends Component {
     };
   }
   startTimer = () => {
-    let currentSeconds = secondsInTwentyFiveMinute;
+    let currentSeconds = secondsInTwentyFiveMinutes;
     if (this.timer) clearInterval(this.timer);
     this.timer = setInterval(() => {
       if (currentSeconds >= 0) {
@@ -25,7 +25,7 @@ export default class PomodoroTimer extends Component {
         currentSeconds = currentSeconds - 1;
       } else {
         clearInterval(this.timer);
-        this.setState({ started: false });
+        this.setState({ started: false, mintues: null, seconds: null });
       }
     }, 1000);
   };
