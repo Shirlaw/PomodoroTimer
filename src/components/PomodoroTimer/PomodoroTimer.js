@@ -1,6 +1,10 @@
 import React from "react";
 import { Component } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+
 import Countdown from "../Countdown/Countdown";
+// import List from "../List/List";
 
 // const secondsInTwentyFiveMinutes = 1500;
 const secondsInTwentyFiveMinutes = 3;
@@ -11,7 +15,7 @@ export default class PomodoroTimer extends Component {
     this.state = {
       currentSeconds: null,
       pomodoros: 0,
-      started: false
+      started: false,
     };
   }
   startTimer = () => {
@@ -41,7 +45,7 @@ export default class PomodoroTimer extends Component {
       currentSeconds: prevState.currentSeconds - 1,
       seconds,
       minutes,
-      started: true
+      started: true,
     }));
   }
 
@@ -49,10 +53,10 @@ export default class PomodoroTimer extends Component {
     let { minutes, seconds, started } = this.state;
     return (
       <div id="pomodoroTimer">
+        <input type="text" />
         <Countdown minutes={minutes} seconds={seconds} />
-        <button onClick={this.startTimer}>
-          {started ? "Restart" : "Start"}{" "}
-        </button>
+        <button onClick={this.startTimer}>{started ? "Restart" : "Start"} </button>
+        {/* <List /> */}
       </div>
     );
   }

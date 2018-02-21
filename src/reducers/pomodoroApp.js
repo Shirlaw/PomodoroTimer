@@ -1,4 +1,12 @@
-const initialState = {};
+import { fromJS } from "immutable";
+
+const initialState = fromJS({
+  pomodoroCount: 0,
+  list: {
+    id: 1,
+    name: "Create pomodoro app",
+  },
+});
 
 export default function pomodoroApp(state = initialState, action) {
   return state;
