@@ -1,5 +1,4 @@
-import React from "react";
-import { Component } from "react";
+import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
@@ -9,7 +8,7 @@ import Countdown from "../Countdown/Countdown";
 // const secondsInTwentyFiveMinutes = 1500;
 const secondsInTwentyFiveMinutes = 3;
 
-export default class PomodoroTimer extends Component {
+class PomodoroTimer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -51,6 +50,7 @@ export default class PomodoroTimer extends Component {
 
   render() {
     let { minutes, seconds, started } = this.state;
+    let { list } = this.props;
     return (
       <div id="pomodoroTimer">
         <input type="text" />
@@ -61,3 +61,13 @@ export default class PomodoroTimer extends Component {
     );
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    list: state.get("list"),
+  };
+};
+
+const mapDispatchToProps = dispatch => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PomodoroTimer);
