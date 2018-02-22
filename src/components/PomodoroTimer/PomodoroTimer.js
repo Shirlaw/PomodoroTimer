@@ -3,6 +3,8 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import Countdown from "../Countdown/Countdown";
+
+import calculateMinutesAndSeconds from "../../services/calculateMinutesAndSeconds";
 // import List from "../List/List";
 
 // const secondsInTwentyFiveMinutes = 1500;
@@ -36,9 +38,7 @@ class PomodoroTimer extends Component {
 
   incrementTimer() {
     let { currentSeconds } = this.state;
-    let minutes = Math.floor(currentSeconds / 60);
-    let seconds = currentSeconds - minutes * 60;
-    if (`${seconds}`.length == 1) seconds = `0${seconds}`;
+    let { minutes, seconds } = calculateMinutesAndSeconds(currentSeconds);
 
     this.setState(prevState => ({
       currentSeconds: prevState.currentSeconds - 1,
