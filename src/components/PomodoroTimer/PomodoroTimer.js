@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import Countdown from "../Countdown/Countdown";
 
 import calculateMinutesAndSeconds from "../../services/calculateMinutesAndSeconds";
-// import List from "../List/List";
+import List from "../List/List";
 
 // const secondsInTwentyFiveMinutes = 1500;
 const secondsInTwentyFiveMinutes = 3;
@@ -56,7 +56,7 @@ class PomodoroTimer extends Component {
         <input type="text" />
         <Countdown minutes={minutes} seconds={seconds} />
         <button onClick={this.startTimer}>{started ? "Restart" : "Start"} </button>
-        {/* <List /> */}
+        <List items={list} />
       </div>
     );
   }
