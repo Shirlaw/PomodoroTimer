@@ -3,10 +3,10 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import Countdown from "../Countdown/Countdown";
-
-import calculateMinutesAndSeconds from "../../services/calculateMinutesAndSeconds";
 import List from "../List/List";
 
+import calculateMinutesAndSeconds from "../../services/calculateMinutesAndSeconds";
+import { deleteItem } from "../../actions/actions";
 // const secondsInTwentyFiveMinutes = 1500;
 const secondsInTwentyFiveMinutes = 3;
 
@@ -56,7 +56,7 @@ class PomodoroTimer extends Component {
         <input type="text" />
         <Countdown minutes={minutes} seconds={seconds} />
         <button onClick={this.startTimer}>{started ? "Restart" : "Start"} </button>
-        <List items={list} />
+        <List items={list} deleteItem={this.props.onDeleteItem} />
       </div>
     );
   }
@@ -68,6 +68,12 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => {
+  return {
+    onDeleteItem: id => {
+      dispatch(deleteItem(id));
+    },
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(PomodoroTimer);

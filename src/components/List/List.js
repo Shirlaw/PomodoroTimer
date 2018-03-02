@@ -2,15 +2,13 @@ import React, { Component } from "react";
 import ListItem from "./ListItem";
 
 export default class List extends Component {
-  renderItems() {
-    let { items } = this.props;
+  renderItem(item) {
+    let { deleteItem } = this.props;
 
-    return items.forEach(item => {
-      console.log(item);
-      <ListItem key={item.id} item={item} />;
-    });
+    return <ListItem key={item.id} item={item} deleteItem={deleteItem} />;
   }
   render() {
-    return <ul>{this.renderItems()}</ul>;
+    let { items } = this.props;
+    return <ul>{this.props.items.map(item => this.renderItem(item))}</ul>;
   }
 }
